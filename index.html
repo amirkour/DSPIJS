@@ -88,7 +88,27 @@
 
 		(function($){
 
-			
+			var bigNumber = 10000000;
+			var start = new Date();
+			for(var i = 0; i < bigNumber; i++){
+				var slow = {};
+				slow.fname = "amir";
+				slow.mname = "mahmoud";
+				slow.lname = "kouretchian";
+			}
+			var end = new Date();
+			console.log("Via expando properties: " + (end- start) + " milliseconds");
+
+			var new_start = new Date();
+			for(var i = 0; i < bigNumber; i++){
+				var fast = {
+					fname: "amir",
+					mname: "mahmoud",
+					lname: "kouretchian"
+				};
+			}
+			var new_end = new Date();
+			console.log("Via JSON declaration: " + (new_end - new_start) + " milliseconds");
 
 		})(window.jQuery);
 
