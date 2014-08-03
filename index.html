@@ -98,15 +98,50 @@
 				var x = "The number is " + i;
 			}
 			
-			console.log("I can see x!? It's value is " + x);
+			//console.log("I can see x!? It's value is " + x);
 
-			navCollapseButton.addEventListener("click", function(e){
+			//navCollapseButton.addEventListener("click", function(e){
 				// more interesting code omitted ...
-				console.log("I can see x too!?  It's value is " + x);
-			});
+			//	console.log("I can see x too!?  It's value is " + x);
+			//});
 		}
 
-		setup("dummy string");
+		function setupBetter(dummyVariable, document){
+
+			var nav = document.getElementById("navBar")
+			var divMain = document.getElementById("divMain");
+			var divLorem = document.getElementById("divLorem1");
+			var divTitle = document.getElementById("divTitle")
+			var navCollapseButton = document.getElementById("navCollapseButton");
+
+			for(var i = 0; i < 1; i++){
+				var x = "The number is " + i;
+			}
+			
+			//console.log("I can see x!? It's value is " + x);
+
+			//navCollapseButton.addEventListener("click", function(e){
+				// more interesting code omitted ...
+				//console.log("I can see x too!?  It's value is " + x);
+			//});
+		}
+
+		var bigNumber = 1000000;
+
+		var start = new Date();
+		for(var i = 0; i < bigNumber; i++){
+			setup(123);
+		}
+		var end = new Date();
+		console.log("Non-local version of setup took " + (end - start) + " milliseconds");
+
+		var new_start = new Date();
+		var doc = window.document;
+		for(var i = 0; i < bigNumber; i++){
+			setupBetter(123, doc);
+		}
+		var new_end = new Date();
+		console.log("Local version of setup took " + (new_end - new_start) + " milliseconds");
 
 		</script>
 	</body>
