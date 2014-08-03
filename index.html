@@ -13,11 +13,11 @@
 		<!-- ripped the navbar straight out of bootstrap's examples, simply to provide DOM nodes.
 		http://getbootstrap.com/components/#navbar
 		-->
-		<nav class="navbar navbar-default" role="navigation">
+		<nav class="navbar navbar-default" role="navigation" id="navBar">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<button id="navCollapseButton" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -67,14 +67,14 @@
 			</div><!-- /.container-fluid -->
 		</nav>
 
-		<div class="row">
+		<div class="row" id="divTitle">
 			<div class="col-xs-12 text-center">
 				<h1>Javascript!</h1>
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="col-xs-10 col-xs-offset-1 text-center">
+		<div class="row" id="divMain">
+			<div class="col-xs-10 col-xs-offset-1 text-center" id="divLorem1">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 			</div>
 		</div>
@@ -86,15 +86,23 @@
 		  -->
 		<script>
 
-		(function($){
+		function setup(dummyVariable){
 
-			// where do these variables go?
-			Aardvark = 10;
-			var Baboon = 20;
+			var nav = document.getElementById("navBar")
+			var divMain = document.getElementById("divMain");
+			var divLorem = document.getElementById("divLorem1");
+			var divTitle = document.getElementById("divTitle")
+			var navCollapseButton = document.getElementById("navCollapseButton");
+			
+			navCollapseButton.addEventListener("click", function(e){
+				var a = 1;
+				var b = 2;
+				var c = 3;
+				// more interesting code omitted ...
+			});
+		}
 
-			breakOnMePlease = 123123123;
-
-		})(window.jQuery);
+		setup("dummy string");
 
 		</script>
 	</body>
