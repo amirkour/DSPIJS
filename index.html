@@ -93,12 +93,16 @@
 			var divLorem = document.getElementById("divLorem1");
 			var divTitle = document.getElementById("divTitle")
 			var navCollapseButton = document.getElementById("navCollapseButton");
+
+			for(var i = 0; i < 1; i++){
+				var x = "The number is " + i;
+			}
 			
+			console.log("I can see x!? It's value is " + x);
+
 			navCollapseButton.addEventListener("click", function(e){
-				var a = 1;
-				var b = 2;
-				var c = 3;
 				// more interesting code omitted ...
+				console.log("I can see x too!?  It's value is " + x);
 			});
 		}
 
