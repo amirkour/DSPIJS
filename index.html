@@ -86,59 +86,43 @@
 		  -->
 		<script>
 
-		function setup(dummyVariable){
-
-			var nav = document.getElementById("navBar")
-			var divMain = document.getElementById("divMain");
-			var divLorem = document.getElementById("divLorem1");
-			var divTitle = document.getElementById("divTitle")
-			var navCollapseButton = document.getElementById("navCollapseButton");
-
-			for(var i = 0; i < 1; i++){
-				var x = "The number is " + i;
-			}
-			
-			//console.log("I can see x!? It's value is " + x);
-
-			//navCollapseButton.addEventListener("click", function(e){
-				// more interesting code omitted ...
-			//	console.log("I can see x too!?  It's value is " + x);
-			//});
+		var globalThing = {
+			fname:'amir',
+			lname:'kouretchian'
 		}
 
-		function setupBetter(dummyVariable, document){
+		function setup(){
 
-			var nav = document.getElementById("navBar")
-			var divMain = document.getElementById("divMain");
-			var divLorem = document.getElementById("divLorem1");
-			var divTitle = document.getElementById("divTitle")
-			var navCollapseButton = document.getElementById("navCollapseButton");
-
-			for(var i = 0; i < 1; i++){
-				var x = "The number is " + i;
+			function go(){
+				var f = globalThing.fname;
+				var l = globalThing.lname;
 			}
-			
-			//console.log("I can see x!? It's value is " + x);
 
-			//navCollapseButton.addEventListener("click", function(e){
-				// more interesting code omitted ...
-				//console.log("I can see x too!?  It's value is " + x);
-			//});
+			go();
 		}
 
-		var bigNumber = 1000000;
+		function setupBetter(thing){
+
+			function go(the_thing){
+				var f = the_thing.fname;
+				var l = the_thing.lname;
+			}
+
+			go(thing);
+		}
+
+		var bigNumber = 100000000;
 
 		var start = new Date();
 		for(var i = 0; i < bigNumber; i++){
-			setup(123);
+			setup();
 		}
 		var end = new Date();
 		console.log("Non-local version of setup took " + (end - start) + " milliseconds");
 
 		var new_start = new Date();
-		var doc = window.document;
 		for(var i = 0; i < bigNumber; i++){
-			setupBetter(123, doc);
+			setupBetter(globalThing);
 		}
 		var new_end = new Date();
 		console.log("Local version of setup took " + (new_end - new_start) + " milliseconds");
