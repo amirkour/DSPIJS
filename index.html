@@ -86,62 +86,26 @@
 		  -->
 		<script>
 
-		function setup(dummyVariable){
+		// auto-function - executes immediately when the page is loaded,
+		// and cannot be referenced/called again!
+		(function($, document, window, undefined){
 
-			var nav = document.getElementById("navBar")
-			var divMain = document.getElementById("divMain");
-			var divLorem = document.getElementById("divLorem1");
-			var divTitle = document.getElementById("divTitle")
-			var navCollapseButton = document.getElementById("navCollapseButton");
+			// now all references to $, window, document, and undefined
+			// stop at this link in the scope chain!
 
-			for(var i = 0; i < 1; i++){
-				var x = "The number is " + i;
+			var protectedVariable = "coolio";
+			var fnDeathToLorem = function(){
+				
+				// references to $ only go back 1 link in the scope chain,
+				// and don't require a lookup in global scope!
+				$("#divLorem").remove();
 			}
-			
-			//console.log("I can see x!? It's value is " + x);
 
-			//navCollapseButton.addEventListener("click", function(e){
-				// more interesting code omitted ...
-			//	console.log("I can see x too!?  It's value is " + x);
-			//});
-		}
+			fnDeathToLorem();
 
-		function setupBetter(dummyVariable, document){
+		})(window.jQuery, window.document, window);
 
-			var nav = document.getElementById("navBar")
-			var divMain = document.getElementById("divMain");
-			var divLorem = document.getElementById("divLorem1");
-			var divTitle = document.getElementById("divTitle")
-			var navCollapseButton = document.getElementById("navCollapseButton");
-
-			for(var i = 0; i < 1; i++){
-				var x = "The number is " + i;
-			}
-			
-			//console.log("I can see x!? It's value is " + x);
-
-			//navCollapseButton.addEventListener("click", function(e){
-				// more interesting code omitted ...
-				//console.log("I can see x too!?  It's value is " + x);
-			//});
-		}
-
-		var bigNumber = 1000000;
-
-		var start = new Date();
-		for(var i = 0; i < bigNumber; i++){
-			setup(123);
-		}
-		var end = new Date();
-		console.log("Non-local version of setup took " + (end - start) + " milliseconds");
-
-		var new_start = new Date();
-		var doc = window.document;
-		for(var i = 0; i < bigNumber; i++){
-			setupBetter(123, doc);
-		}
-		var new_end = new Date();
-		console.log("Local version of setup took " + (new_end - new_start) + " milliseconds");
+		// NO access to protectedVariable, NO access to fnSetup
 
 		</script>
 	</body>
