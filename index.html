@@ -90,18 +90,37 @@
 		// and cannot be referenced/called again!
 		(function($, document, window, undefined){
 
-			// now all references to $, window, document, and undefined
-			// stop at this link in the scope chain!
-
-			var protectedVariable = "coolio";
-			var fnDeathToLorem = function(){
-				
-				// references to $ only go back 1 link in the scope chain,
-				// and don't require a lookup in global scope!
-				$("#divLorem").remove();
+			function NoCaching(){
+				if($("#divMain").length > 0 &&
+					$("#divMain").width() > 0 &&
+					$("#divMain").height() > 0){
+					// do something!
+				}
 			}
 
-			fnDeathToLorem();
+			function Caching(){
+				var $divMain = $("#divMain");
+				if($divMain.length > 0 &&
+					$divMain.width() > 0 &&
+					$divMain.height() > 0){
+					// do stuffs
+				}
+			}
+
+			var bigNumber = 10000;
+			var start = new Date();
+			for(var i = 0; i < bigNumber; i++){
+				NoCaching();
+			}
+			var end = new Date();
+			console.log("Without var caching: " + (end - start) + " ms");
+
+			var new_start = new Date();
+			for(var i = 0; i < bigNumber; i++){
+				Caching();
+			}
+			var new_end = new Date();
+			console.log("With var caching: " + (new_end - new_start) + " ms");
 
 		})(window.jQuery, window.document, window);
 
